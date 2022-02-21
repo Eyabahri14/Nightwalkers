@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="content-page">
+
+        <!-- Start content -->
+
+
+        <div class="content">
+            <div class="container-fluid">
+                <div class="about-section-box">
+                    <div class="container">
+                     >
+                        <!-- Start slides -->
+                        <div id="slides" class="cover-slides">
+                            <ul class="slides-container">
+                                {% for p in products %}
+                                    <li class="text-center">
+                                        <img src="{{ app.request.getBaseURL() }}/uploads/brochures/{{ p.picture }}" alt="">
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <h1 class="m-b-20"><strong>{{ p.name }}</strong></h1>
+
+                                                    <p class="m-b-40" style="padding-top: 170px">{{ p.description }}</p>
+                                                    <p><a class="btn btn-lg btn-circle btn-outline-new-white" href="{{ path('add_to_favoris',{'id': p.id}) }}"><i class="fa fa-star-o" aria-hidden="true"></i></a> <a class="btn btn-lg btn-circle btn-outline-new-white" href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></p>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                {% endfor %}
+                            </ul>
+                            <div class="slides-navigation">
+                                <a href="#" class="next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                <a href="#" class="prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                        <!-- End slides -->
+                        {% for message in app.flashes('success') %}
+                            <div class="alert alert-success">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}
