@@ -1,0 +1,139 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}<title>Browse Courses</title>{% endblock %}
+
+{% block body %}
+
+    <div class="all-page-title page-breadcrumb">
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1>Courses</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End All Pages -->
+
+    <!-- Start Menu -->
+    <div class="menu-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="special-menu text-center">
+                        <div class="button-group filter-button-group">
+                            <button class="active" data-filter="*">All</button>
+                            <button data-filter=".online">Online</button>
+                            <button data-filter=".on-site">On-site</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row special-list">
+                {% for formation in formations %}
+
+                    {% if formation.mode == "Online" %}
+                        <div class="col-lg-4 col-md-6 special-grid online">
+                            <a href="{{ path('formation_show',{'id':formation.id}) }}" class="list-group-item list-group-item-action">
+                                <p>Starting Date : {{ formation.dateDebut|date("d M Y") }}</p>
+                                <p>{{ formation.description }}</p>
+                                <p>{{ formation.price }} DT</p>
+                            </a>
+                        </div>
+                    {% endif %}
+
+                    {% if formation.mode == "On-site" %}
+                        <div class="col-lg-4 col-md-6 special-grid on-site">
+                            <a href="{{ path('formation_show',{'id':formation.id}) }}" class="list-group-item list-group-item-action">
+                                <p>Starting Date : {{ formation.dateDebut|date("d M Y") }}</p>
+                                <p>{{ formation.description }}</p>
+                                <p>{{ formation.price }} DT</p>
+                            </a>
+                        </div>
+                    {% endif %}
+
+                {% endfor %}
+
+
+            </div>
+        </div>
+    </div>
+    {#  <div class="content-page">
+         <br>
+         <br>
+         <br>
+         <br>
+         <br>
+         <br>
+         <br>
+         <!-- Start content -->
+         <div class="content">
+             <div class="container-fluid">
+                 <div class="about-section-box">
+                     <div class="container">
+                         <div class="row">
+                             <div class="col-lg-6 col-md-6 col-sm-12">
+                                 <br>
+                                 <br>
+                                 <br>
+                                 <br>
+                                 <br>
+                                 <br>
+                                 <br>
+                                 <center>
+                                     <h1>Formations List</h1>
+                                     <table class="table">
+                                         <thead>
+                                         <tr>
+                                             <th>Id</th>
+                                             <th>Description</th>
+                                             <th>Mode</th>
+                                             <th>Duration</th>
+                                             <th>Starting date</th>
+                                             <th>Ending date</th>
+                                             <th>Price</th>
+                                             <th>Show</th>
+                                             <th>Edit</th>
+                                         </tr>
+                                         </thead>
+                                         <tbody>
+                                         {% for formation in formations %}
+                                             <tr>
+                                                 <td>{{ formation.id }}</td>
+                                                 <td>{{ formation.description }}</td>
+                                                 <td>{{ formation.mode }}</td>
+                                                 <td>{{ formation.duree }}</td>
+                                                 <td>{{ formation.dateDebut ? formation.dateDebut|date('Y-m-d H:i:s') : '' }}</td>
+                                                 <td>{{ formation.dateFin ? formation.dateFin|date('Y-m-d H:i:s') : '' }}</td>
+                                                 <td>{{ formation.price }}</td>
+                                                 <td>
+                                                     <a href="{{ path('formation_show', {'id': formation.id}) }}">show</a>
+                                                 </td>
+                                                 <td>
+                                                     <a href="{{ path('formation_edit', {'id': formation.id}) }}">edit</a>
+                                                 </td>
+                                             </tr>
+                                         {% else %}
+                                             <tr>
+                                                 <td colspan="8">no records found</td>
+                                             </tr>
+                                         {% endfor %}
+                                         </tbody>
+                                     </table>
+                                 </center>
+                                 <a href="{{ path('formation_new') }}">Create new</a>
+                             </div>
+                             <div class="col-lg-6 col-md-6 col-sm-12 text-center">
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+    #}
+
+
+
+{% endblock %}

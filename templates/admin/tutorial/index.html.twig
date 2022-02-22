@@ -1,0 +1,80 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}<title>Browse Tutorials</title>{% endblock %}
+
+{% block body %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card-box table-responsive">
+                <h4 class="m-t-0 header-title">Tutorials</h4>
+                <p class="text-muted font-14 m-b-30">
+                </p>
+                <div id="datatable-buttons_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <div class="dt-buttons btn-group">
+                                <a href="{{ path('tutorial_back_new') }}" class="btn btn-secondary buttons-copy buttons-html5">
+                                    <span>Create new entry</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table id="datatable-buttons" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                                <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Description</th>
+                                    <th>Price</th>
+                                    <th>Category</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for tutorial in tutorials %}
+                                    <tr>
+                                        <td>{{ tutorial.titre }}</td>
+                                        <td>{{ tutorial.description }}</td>
+                                        <td>{{ tutorial.prix }} DT</td>
+                                        <td>{{ tutorial.category }}</td>
+                                        <td>
+                                            <a href="{{ path('tutorial_back_show', {'id': tutorial.id}) }}">show</a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ path('tutorial_back_edit', {'id': tutorial.id}) }}">edit</a>
+                                        </td>
+
+                                    </tr>
+                                {% else %}
+                                    <tr>
+                                        <td colspan="">no records found</td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{#                <div class="about-section-box">#}
+{#                    <div class="container">#}
+{#                        <div class="row">#}
+
+{#                            <div class="col-lg-6 col-md-6 col-sm-12">#}
+
+
+{#                                <a href="{{ path('formation_new') }}">Create new</a>#}
+{#                            </div>#}
+{#                            <div class="col-lg-6 col-md-6 col-sm-12 text-center">#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+
+
+</div>
+{% endblock %}

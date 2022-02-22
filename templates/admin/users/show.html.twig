@@ -1,0 +1,48 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}<title>User/Admin details</title>{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card-box task-detail">
+                <div class="media m-b-30">
+                    <div class="media-body">
+                        <h2 class="media-heading mb-0 mt-0">User/Admin details</h2>
+                    </div>
+                </div>
+
+                <h4 class="font-600 m-b-20">{{ user.firstname }} {{ user.lastname }}</h4>
+
+                {# EMBED VIDEO HERE #}
+
+                <ul class="list-inline task-dates m-b-0 m-t-20">
+                    <li>
+                        <h5 class="font-600 m-b-5">Email</h5>
+                        <p> {{ user.email }} </p>
+                    </li>
+
+                    <li>
+                        <h5 class="font-600 m-b-5">Roles</h5>
+                        <p> {% for role in user.roles %} <span>{{ role }}, </span> {% endfor%} </p>
+                    </li>
+                </ul>
+                <div class="clearfix">
+
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="text-right m-t-30">
+                            <a href="{{ path('user_back_index') }}" class="btn btn-success waves-effect waves-light">
+                                Save
+                            </a>
+                            <a href="{{ path('user_back_edit', {'id': user.id}) }}" class="btn btn-primary waves-effect waves-light">
+                                Update
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
