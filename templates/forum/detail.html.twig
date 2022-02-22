@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ForumController!{% endblock %}
+
+{% block body %}
+<div class="content-page">
+
+    <!-- Start content -->
+
+    <div class="content">
+        <div class="container-fluid">
+            <!-- Start All Pages -->
+            <div class="all-page-title page-breadcrumb">
+                <div class="container text-center">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1>Blog</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End All Pages -->
+
+            <!-- Start blog -->
+            <div class="blog-box">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="heading-title text-center">
+                                <h2>Blog</h2>
+                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        {%  for discussion in discussions %}
+                        <div class="col-lg-4 col-md-6 col-6">
+                            <div class="blog-box-inner-e">
+                                <div class="blog-img-box">
+                                    <img class="img-fluid" src="{{ asset('uploads/thematique_image/' )  }}" alt="">
+                                </div>
+                                <div class="blog-detail">
+                                    <h4>{{ discussion.titre }}</h4>
+                                    <ul>
+                                        <li><a href="{{ path('commentaires',{'id':discussion.id}) }}> Participer </a></li>
+                                        <li>|</li>
+                                        <li><span>{{ discussion.datecreationdisc.format('d/m/Y') }}</span></li>
+                                    </ul>
+                                    <!--a class="btn btn-lg btn-circle btn-outline" href="{{ path('thematique',{'id':discussion.id}) }}">Voir Discussions</a-->
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
