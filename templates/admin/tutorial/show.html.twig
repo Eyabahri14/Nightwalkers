@@ -1,0 +1,52 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}<title>Tutorial details</title>{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card-box task-detail">
+                <div class="media m-b-30">
+                    <div class="media-body">
+                        <h2 class="media-heading mb-0 mt-0">Tutorial details</h2>
+                    </div>
+                </div>
+
+                <h4 class="font-600 m-b-20">{{ tutorial.titre }}</h4>
+
+                {# EMBED VIDEO HERE #}
+
+                <p class="text-muted">
+                    {{ tutorial.description }}
+                </p>
+
+                <ul class="list-inline task-dates m-b-0 m-t-20">
+                    <li>
+                        <h5 class="font-600 m-b-5">Mode</h5>
+                        <p> {{ tutorial.category }} </p>
+                    </li>
+
+                    <li>
+                        <h5 class="font-600 m-b-5">Price</h5>
+                        <p> {% if(tutorial.prix == 0) %} This tutorial is for <span class="text-success mb-1">Free</span> {% else %} {{ tutorial.prix }} DT {% endif %} </p>
+                    </li>
+                </ul>
+                <div class="clearfix">
+
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="text-right m-t-30">
+                            <a href="{{ path('tutorial_back_index') }}" class="btn btn-success waves-effect waves-light">
+                                Save
+                            </a>
+                            <a href="{{ path('tutorial_back_edit', {'id': tutorial.id}) }}" class="btn btn-primary waves-effect waves-light">
+                                Update
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
