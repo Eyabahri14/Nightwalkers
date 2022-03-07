@@ -1,0 +1,63 @@
+{% extends 'base1.html.twig' %}
+
+{% block body %}
+    <div class="content-page">
+        <!-- Start content -->
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row" style="display: flex;align-items: center;justify-content: center">
+                    <div class="col-md-6">
+                        <div class="card-box">
+                            <h4 class="m-t-0 m-b-30 header-title">Modifier Thematique</h4>
+                            {{form_start(f)}}
+
+
+                            <div class="form-group">
+                                <label for="name">nom</label>
+                                {{ form_widget(f.nom, {'attr':{'class':'form-control'}})}}
+                            </div>
+
+                            <div class="col-sm-12">
+                                <div class="card-box">
+
+                                    <div class="dropdown pull-right">
+                                        <a href="#" class="dropdown-toggle arrow-none card-drop" data-toggle="dropdown" aria-expanded="false">
+                                            <i class="mdi mdi-dots-vertical"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <!-- item-->
+                                            <a href="javascript:void(0);" class="dropdown-item">Action</a>
+                                            <!-- item-->
+                                            <a href="javascript:void(0);" class="dropdown-item">Another action</a>
+                                            <!-- item-->
+                                            <a href="javascript:void(0);" class="dropdown-item">Something else</a>
+                                            <!-- item-->
+                                            <a href="javascript:void(0);" class="dropdown-item">Separated link</a>
+                                        </div>
+                                    </div>
+
+                                    <h4 class="header-title m-t-0 m-b-30">Image</h4>
+                                    {#  <input type="file" data-height="300" class="dropify">#}
+                                    {{form_widget(f.image,{'attr':{'class':'dropify','data-height':'20'}}) }}
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                {{ form_widget(f.Submit,{'attr':{'class':'btn btn-pink btn-rounded w-md waves-effect waves-light m-b-5'}}) }}
+                            </div>
+                            {{ form_end(f) }}
+
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}
