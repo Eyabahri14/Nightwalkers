@@ -1,0 +1,70 @@
+{% extends 'admin/base.html.twig' %}
+{% block title %} <title>Home</title> {% endblock %}
+{% block body %}
+    <div class="container-fluid">
+
+
+        <div class="row">
+            <div class="col-xl-3 col-md-6">
+                <div class="card-box">
+                    <h4 class="header-title mt-0 m-b-30">Number of orders</h4>
+                    <div class="widget-chart-1">
+                        <div class="widget-detail-1">
+                            <h2 class="p-t-10 mb-0"> {{ count_orders }} </h2>
+                            <p class="text-muted m-b-10">Orders</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6">
+                <div class="card-box">
+                    <h4 class="header-title mt-0 m-b-30">Total Income</h4>
+                    <div class="widget-chart-1">
+                        <div class="widget-detail-1">
+                            <h2 class="p-t-10 mb-0"> {{ sum_orders|first }} TND</h2>
+                            <p class="text-muted m-b-10">Revenue</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6">
+                <div class="card-box">
+                    <h4 class="header-title mt-0 m-b-30">Number of Courses</h4>
+                    <div class="widget-chart-1">
+                        <div class="widget-chart-box-1">
+                        </div>
+                        <div class="widget-detail-1">
+                            <h2 class="p-t-10 mb-0"> {{ count_formation }} </h2>
+                            <p class="text-muted m-b-10">{% if count_formation == 1 %}Course{% else %}Courses{% endif %}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6">
+                <div class="card-box">
+                    <h4 class="header-title mt-0 m-b-30">Number of Tutorials</h4>
+                    <div class="widget-chart-1">
+                        <div class="widget-detail-1">
+                            <h2 class="p-t-10 mb-0"> {{ count_tutorial }} </h2>
+                            <p class="text-muted m-b-10">{% if count_tutorial == 1 %}Tutorial{% else %}Tutorials{% endif %}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div clas="row">
+            <div id="div_chart"></div>
+            <div id="pie_chart"></div>
+
+
+            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+            <script type="text/javascript">
+                {{ gc_draw(bar, 'div_chart') }}
+                {{ gc_draw(pie, 'pie_chart') }}
+            </script>
+        </div>
+    </div>
+{% endblock %}

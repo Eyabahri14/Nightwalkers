@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    <!-- Start All Pages -->
+    <div class="all-page-title page-breadcrumb">
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1>Card Info</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End All Pages -->
+
+    <!-- Start blog details -->
+    <div class="blog-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="heading-title text-center">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-8 col-lg-8 col-12">
+                    <div class="blog-inner-details-page">
+                        <div class="blog-inner-box">
+
+                            <div class="inner-blog-detail details-page">
+                                <form action="{{ path('confirmpayment') }}" id="payment-form">
+
+                                    <label for="card-element">
+                                        Credit or debit card
+                                    </label>
+                                    <div id="card-element">
+                                        <!-- A Stripe Element will be inserted here. -->
+                                    </div>
+
+
+                                    <!-- Used to display Element errors. -->
+                                    <div id="card-errors" role="alert"></div>
+
+                                    <center><button style="margin-top: 2em;
+                        background-color: #E7AB3C;
+                        border: none;
+                        padding: 0.5em;
+                        width: 150px;
+                        border-radius: 5px;
+                        font-family: Quicksand,sans-serif;
+                        font-weight: bold;
+                        color: #ffffff">Confirm</button></center>
+                                </form>
+
+
+
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                {# Right #}
+
+
+
+            </div>
+        </div>
+    </div>
+
+    <!-- End details -->
+{% endblock %}

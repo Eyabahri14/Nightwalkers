@@ -1,0 +1,231 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="all-page-title page-breadcrumb">
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1>Favoris</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End All Pages -->
+
+    <!-- Start Menu -->
+    <div class="menu-box">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="input-group mb-3">
+
+
+                        <input type="text" id="myInput" onkeyup="myFunction()" class="form-control" placeholder="chercher par nom" aria-label="Username" aria-describedby="basic-addon1">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">?</span>
+                        </div>
+                    </div>
+
+
+                    <table id="pager" class="wp-list-table widefat striped posts table table-striped table-bordered" style="width:100%" >
+                        <thead>
+                                                <tr>
+
+                                                    <th>Nom</th>
+                                                    <th>Picture</th>
+                                                    <th>description</th>
+                                                    <th>Supprimer</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% for p in favoris_article %}
+                                                    <tr>
+
+
+                                                        <td>{{ p.name }}</td>
+                                                        <td>
+                                                            <img style="width : 50px ; heigth : 50px" src="{{ app.request.getBaseURL() }}/uploads/brochures/{{ p.picture }}"/>
+                                                        </td>
+                                                        <td>{{ p.description}}</td>
+
+                                                        <td>
+                                                            <!-- Button trigger modal -->
+                                                            <a   data-toggle="modal" data-target="#{{ p.id }}exampleModal">
+                                                                <i class="fa fa-trash" style="color:#ff5b5b;font-size:20px"></i>
+                                                            </a>
+
+                                                            <!-- Modal -->
+                                                            <div class="modal fade" id="{{ p.id }}exampleModal"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog" role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title" id="exampleModalLabel">Delete this post ?</h5>
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="navigation">
+                                                                            {{ knp_pagination_render(pagination) }}
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">annuler</button>
+                                                                            <a href="{{ path('remove_from_favoris',{'id':app.user.userfav.id,'articleid':p.id}) }}" type="button" class="btn btn-primary">Comfimer</a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                {% endfor %}
+                        </tbody>
+                    </table>
+
+
+
+                    <div class="special-menu text-center">
+                        <div class="button-group filter-button-group">
+                            <div id="pageNavPosition" class="pager-nav"></div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+
+
+    <!-- End Menu -->
+            <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CESDK2J7&placement=getbutterflycom" ></script>
+            <script>
+                function Pager(tableName, itemsPerPage) {
+                    'use strict';
+
+                    this.tableName = tableName;
+                    this.itemsPerPage = itemsPerPage;
+                    this.currentPage = 1;
+                    this.pages = 0;
+                    this.inited = false;
+
+                    this.showRecords = function (from, to) {
+                        let rows = document.getElementById(tableName).rows;
+
+                        // i starts from 1 to skip table header row
+                        for (let i = 1; i < rows.length; i++) {
+                            if (i < from || i > to) {
+                                rows[i].style.display = 'none';
+                            } else {
+                                rows[i].style.display = '';
+                            }
+                        }
+                    };
+
+                    this.showPage = function (pageNumber) {
+                        if (!this.inited) {
+                            // Not initialized
+                            return;
+                        }
+
+                        let oldPageAnchor = document.getElementById('pg' + this.currentPage);
+                        oldPageAnchor.className = 'pg-normal';
+
+                        this.currentPage = pageNumber;
+                        let newPageAnchor = document.getElementById('pg' + this.currentPage);
+                        newPageAnchor.className = 'pg-selected';
+
+                        let from = (pageNumber - 1) * itemsPerPage + 1;
+                        let to = from + itemsPerPage - 1;
+                        this.showRecords(from, to);
+
+                        let pgNext = document.querySelector('.pg-next'),
+                            pgPrev = document.querySelector('.pg-prev');
+
+                        if (this.currentPage == this.pages) {
+                            pgNext.style.display = 'none';
+                        } else {
+                            pgNext.style.display = '';
+                        }
+
+                        if (this.currentPage === 1) {
+                            pgPrev.style.display = 'none';
+                        } else {
+                            pgPrev.style.display = '';
+                        }
+                    };
+
+                    this.prev = function () {
+                        if (this.currentPage > 1) {
+                            this.showPage(this.currentPage - 1);
+                        }
+                    };
+
+                    this.next = function () {
+                        if (this.currentPage < this.pages) {
+                            this.showPage(this.currentPage + 1);
+                        }
+                    };
+
+                    this.init = function () {
+                        let rows = document.getElementById(tableName).rows;
+                        let records = (rows.length - 1);
+
+                        this.pages = Math.ceil(records / itemsPerPage);
+                        this.inited = true;
+                    };
+
+                    this.showPageNav = function (pagerName, positionId) {
+                        if (!this.inited) {
+                            // Not initialized
+                            return;
+                        }
+
+                        let element = document.getElementById(positionId),
+                            pagerHtml = '<button onclick="' + pagerName + '.prev();" class="pg-normal pg-prev">&#171;</button>';
+
+                        for (let page = 1; page <= this.pages; page++) {
+                            pagerHtml += '<button id="pg' + page + '" class="pg-normal pg-next" onclick="' + pagerName + '.showPage(' + page + ');">' + page + '</button>';
+                        }
+
+                        pagerHtml += '<button onclick="' + pagerName + '.next();" class="pg-normal">&#187;</button>';
+
+                        element.innerHTML = pagerHtml;
+                    };
+                }
+
+
+
+                //
+                let pager = new Pager('pager', 4);
+
+                pager.init();
+                pager.showPageNav('pager', 'pageNavPosition');
+                pager.showPage(1);
+            </script>
+    <script>
+        function myFunction() {
+            // Declare variables
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("pager");
+            tr = table.getElementsByTagName("tr");
+
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+
+    </div>
+{% endblock %}

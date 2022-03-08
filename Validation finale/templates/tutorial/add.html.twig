@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}<title>Add Tutorial</title>{% endblock %}
+
+{% block body %}
+    <div class="content-page">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
+        <!-- Start content -->
+
+        <div class="content">
+            <div class="container-fluid">
+                <div class="about-section-box">
+                    <div class="container">
+                        <div class="row">
+
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br><br>
+                                <br>
+                                <br>
+                                <h1>Create new Tutorial</h1>
+
+                                {{ form_start(form) }}
+                                {{ form_widget(form) }}
+                                <button class="btn">{{ button_label|default('Save') }}</button>
+                                {{ form_end(form) }}
+
+                                <a href="{{ path('tutorial_index') }}">back to list</a>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 text-center">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}
