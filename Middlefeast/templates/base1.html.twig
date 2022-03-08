@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {# Run `composer require symfony/webpack-encore-bundle`
+           and uncomment the following Encore helpers to start using Symfony UX #}
+    {% block stylesheets %}
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
+        <meta name="author" content="Coderthemes">
+
+        <link rel="shortcut icon" href="assets1/images/favicon.ico">
+
+        <title>Adminto - Responsive Admin Dashboard Template</title>
+
+        <!--Morris Chart CSS -->
+        <link rel="stylesheet" href="{{ asset('assets1/plugins/morris/morris.css') }}">
+
+        <!-- App css -->
+        <link href="{{ asset('assets1/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('assets1/css/icons.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('assets1/css/style.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('assets1/js/modernizr.min.js') }}" rel="stylesheet" type="text/css" />
+
+    {% endblock %}
+
+    {% block javascripts %}
+
+        <!-- jQuery  -->
+        <script src="{{ asset('assets1/js/jquery.min.js') }}"></script>
+        <script src="{{ asset('assets1/js/popper.min.js') }}"></script>
+        <script src="{{ asset('assets1/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('assets1/js/detect.js') }}"></script>
+        <script src="{{ asset('assets1/js/fastclick.js') }}"></script>
+        <script src="{{ asset('assets1/js/jquery.blockUI.js') }}"></script>
+        <script src="{{ asset('assets1/js/waves.js') }}"></script>
+        <script src="{{ asset('assets1/js/jquery.nicescroll.js') }}"></script>
+        <script src="{{ asset('assets1/js/jquery.slimscroll.js') }}"></script>
+        <script src="{{ asset('assets1/js/jquery.scrollTo.min.js') }}"></script>
+
+        <!-- KNOB JS -->
+        <!--[if IE]>
+            <script type="text/javascript" src="{{ asset('assets1/plugins/jquery-knob/excanvas.js') }}"></script>
+            <![endif]-->
+        <script src="{{ asset('assets1/plugins/jquery-knob/jquery.knob.js') }}"></script>
+
+        <!--Morris Chart-->
+        <script src="{{ asset('assets1/plugins/morris/morris.min.js') }}"></script>
+        <script src="{{ asset('assets1/plugins/raphael/raphael-min.js') }}"></script>
+
+        <!-- Dashboard init -->
+        <script src="{{ asset('assets1/pages/jquery.dashboard.js') }}"></script>
+        <script src="{{ asset('assets1/js/jquery.core.js') }}"></script>
+        <script src="{{ asset('assets1/js/jquery.app.js') }}"></script>
+
+        <!-- App js -->
+    {% endblock %}
+</head>
+<body class="fixed-left">
+
+<!-- Begin page -->
+<div id="wrapper">
+
+
+
+    <!-- Top Bar Start -->
+    <div class="topbar">
+
+        <!-- LOGO -->
+        <div class="topbar-left">
+            <a href="index.html" class="logo"><span>Admin<span>to</span></span><i class="mdi mdi-layers"></i></a>
+        </div>
+
+        <!-- Button mobile view to collapse sidebar menu -->
+        <div class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+
+                <!-- Page title -->
+                <ul class="nav navbar-nav list-inline navbar-left">
+                    <li class="list-inline-item">
+                        <button class="button-menu-mobile open-left">
+                            <i class="mdi mdi-menu"></i>
+                        </button>
+                    </li>
+                    <li class="list-inline-item">
+                        <h4 class="page-title">Gestion Forum</h4>
+                    </li>
+                </ul>
+
+                <nav class="navbar-custom">
+
+                    <ul class="list-unstyled topbar-right-menu float-right mb-0">
+
+                        <li>
+                            <!-- Notification -->
+                            <div class="notification-box">
+                                <ul class="list-inline mb-0">
+                                    <li>
+                                        <a href="javascript:void(0);" class="right-bar-toggle">
+                                            <i class="mdi mdi-bell-outline noti-icon"></i>
+                                        </a>
+                                        <div class="noti-dot">
+                                            <span class="dot"></span>
+                                            <span class="pulse"></span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- End Notification bar -->
+                        </li>
+
+
+
+                    </ul>
+                </nav>
+            </div><!-- end container -->
+        </div><!-- end navbar -->
+    </div>
+    <!-- Top Bar End -->
+
+
+    <!-- ========== Left Sidebar Start ========== -->
+    <div class="left side-menu">
+        <div class="sidebar-inner slimscrollleft">
+
+            <!-- User -->
+            <div class="user-box">
+                <div class="user-img">
+
+                    <img src="{{ asset('assets1/images/users/avatar-1.png') }}" alt="user-img" height="300" width="100" title="" class="rounded-circle img-thumbnail img-responsive" >
+            </div>
+            <!-- End User -->
+
+            <!--- Sidemenu -->
+            <div id="sidebar-menu">
+                <ul>
+
+                    <li>
+                        <a href="{{ path('affichageThematique') }}" class="waves-effect"><i class=" dripicons-browser-upload"></i> <span> Gestion Thematique </span> <span class="menu-arrow"></span></a>
+                    </li>
+
+                    <li>
+                        <a href="{{ path('affichage') }}"  class="waves-effect"><i class=" dripicons-web"></i> <span> Gestion Discussion </span> </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ path('affichageCommentaire') }}" class="waves-effect"><i class=" ti-comment-alt"></i> <span> Gestion Commentaire </span> <span class="menu-arrow"></span></a>
+                    </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <!-- Sidebar -->
+            <div class="clearfix"></div>
+
+        </div>
+
+    </div>
+    <!-- Left Sidebar End -->
+
+</div>
+
+
+
+
+
+
+
+
+{% block body %}{% endblock %}
+</body>
+</html>

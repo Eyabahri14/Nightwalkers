@@ -1,0 +1,138 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+
+    <div class="content-page">
+
+        <!-- Start content -->
+
+        <div class="content">
+            <div class="container-fluid">
+
+
+                <!-- Start All Pages -->
+                <div class="all-page-title page-breadcrumb">
+                    <div class="container text-center">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h1>Commentaires {{ discussion.titre  }} </h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End All Pages -->
+
+                <!-- Start blog -->
+                <div class="blog-box">
+                    <div class="container">
+                        {%  for message in app.flashes('Erreur') %}
+                            <div class="alert alert-danger">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                        {%  for message in app.flashes('Success') %}
+                            <div class="alert alert-success">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="heading-title text-center">
+                                    <h2>Commentaires</h2>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-12">
+                                <div class="blog-inner-details-page">
+                                    <div class="blog-comment-box">
+
+                                        {% for commentaire in pagination %}
+                                            {% if commentaire.parent == 0 %}
+                                                <div class="comment-item">
+                                                    <div class="comment-item-left">
+                                                        <img src="{{asset('assets/images/avt1-img.png') }}" alt="">
+                                                    </div>
+                                                    <div class="comment-item-right">
+                                                        <div class="pull-left">
+                                                            <a href="#">User</a>
+                                                        </div>
+                                                        <div class="pull-right">
+                                                            <i class="fa fa-clock-o" aria-hidden="true"></i>Date : <span>{{ commentaire.datecreationcom.format('d/m/Y H:i:s') }}</span>
+                                                        </div>
+                                                        <div class="des-l">
+                                                            <p>{{ commentaire.description }}</p>
+                                                        </div>
+                                                        <a href="{{ path('likecommentaires',{'id':commentaire.id}) }}"   class="right-btn-re">{{ commentaire.nblike }} <i class="fa fa-heart" aria-hidden="true"></i> j'aime</a>
+                                                        <a href="{{ path('commentaire',{'id':commentaire.id}) }}" target="_blank"  class="right-btn-re"> <i class="fa fa-file" aria-hidden="true"></i> Télécharger</a>
+
+                                                        <a href="#"  data="{{  commentaire.id }}" class="replay right-btn-re"><i class="fa fa-reply" aria-hidden="true"></i> Reply</a>
+                                                    </div>
+                                                </div>
+                                                {% for commentairechild in commentaires %}
+                                                    {% if commentairechild.parent == commentaire.id %}
+                                                        <div class="comment-item children">
+                                                            <div class="comment-item-left">
+                                                                <img src="{{asset('assets/images/avt1-img.png') }}" alt="">
+                                                            </div>
+                                                            <div class="comment-item-right">
+                                                                <div class="pull-left">
+                                                                    <a href="#">User</a>
+                                                                </div>
+                                                                <div class="pull-right">
+                                                                    <i class="fa fa-clock-o" aria-hidden="true"></i>Date : <span>{{ commentairechild.datecreationcom.format('d/m/Y H:i:s') }}</span>
+                                                                </div>
+                                                                <div class="des-l">
+                                                                    <p>{{ commentairechild.description }}</p>
+                                                                </div>
+                                                                <a href="{{ path('likecommentaires',{'id':commentairechild.id}) }}"   class="right-btn-re">{{ commentairechild.nblike }} <i class="fa fa-heart" aria-hidden="true"></i> j'aime</a>
+                                                                <a href="{{ path('commentaire',{'id':commentaire.id}) }}" target="_blank"  class="right-btn-re"> <i class="fa fa-file" aria-hidden="true"></i> Télécharger</a>
+
+                                                            </div>
+
+                                                        </div>
+
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        {%  endfor %}
+                                        <div class="navigation">
+                                            {{ knp_pagination_render(pagination) }}
+                                        </div>
+                                    </div>
+
+                                    <div class="comment-respond-box">
+                                        <h3>Laisser votre commentaire </h3>
+                                        <div class="comment-respond-form" >
+
+                                            {{ form_start(form) }}
+                                            <div class="form-group">
+                                                <label for="name">description</label>
+                                                {{ form_widget(form.description, {'attr':{'class':'form-control'}})}}
+                                            </div>
+                                            {{ form_widget(form.parent,{'attr':{'class':'d-none'}}) }}
+                                            {{ form_widget(form.discussion,{'attr':{'class':'d-none'}}) }}
+                                            {{ form_widget(form.nblike,{'attr':{'class':'d-none'}}) }}
+
+                                            <div class="form-group">
+                                                {{ form_widget(form.Submit,{'attr':{'class':'btn btn-submit'}}) }}
+                                            </div>
+
+                                            {{ form_end(form) }}
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
