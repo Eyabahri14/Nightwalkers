@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    <!-- Start All Pages -->
+    <div class="all-page-title page-breadcrumb">
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1>My Orders</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End All Pages -->
+
+    <!-- Start blog details -->
+    <div class="blog-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="heading-title text-center">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-8 col-lg-8 col-12">
+                    <div class="blog-inner-details-page">
+                        <div class="blog-inner-box">
+
+                            <div class="inner-blog-detail details-page">
+                                {% for item in commandes %}
+
+                                    <blockquote>
+
+                                        <h3>Commande :</h3> <h3>{{ item.id }}</h3><br>
+                                        <h3>Total  :</h3> <h3>{{ item.total }} DT</h3><br>
+                                        <h3>Etat :  {% if(item.etat == "Paid") %}
+                                                <h3 style="color: green">{{ item.etat }}</h3>
+                                            {% else %}
+                                                <h3 style="color: red">{{ item.etat }}</h3>
+
+                                                {% endif %}
+
+                                            </h3> </h3>
+
+                                    </blockquote>
+
+                                    <hr>
+                                {% endfor %}
+
+
+
+
+
+
+
+
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                {# Right #}
+
+
+
+            </div>
+        </div>
+    </div>
+
+    <!-- End details -->
+{% endblock %}

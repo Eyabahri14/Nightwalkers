@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}<title>Browse Subscriptions</title>{% endblock %}
+
+{% block body %}
+
+    <div class="all-page-title page-breadcrumb">
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1>Subscriptions</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End All Pages -->
+
+    <!-- Start Menu -->
+    <div class="menu-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="special-menu text-center">
+                        <div class="button-group filter-button-group">
+                            <button class="active" data-filter="*">Subscriptions</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row special-list">
+                {% if sub is not null %}
+                    <blockquote>
+                        <div class="col-lg-4 col-md-6 special-grid">
+                        <h1> You are Allready subscribed</h1>
+                        </div>
+                    </blockquote>
+                {% else %}
+                <div class="col-lg-4 col-md-6 special-grid">
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <p>1 Month Subscription</p>
+                        <p>Description :</p>
+                        <p>Get up to 3 Free Tutorials and Courses</p>
+                        <p><h3>Price : 100 DT </h3></p>
+                        <a href="{{ path('showCard1') }}" style="width: 300px" class="btn btn-primary ">Get</a>
+                    </a>
+
+                </div>
+
+                <div class="col-lg-4 col-md-6 special-grid">
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <p>3 Months Subscription</p>
+                        <p>Description :</p>
+                        <p>Get up to 5 Free Tutorials and Courses</p>
+                        <p><h3>Price : 250 DT </h3></p>
+                        <a href="{{ path('showCard2') }}" style="width: 300px" class="btn btn-primary ">Get</a>
+                    </a>
+
+                </div>
+
+                <div class="col-lg-4 col-md-6 special-grid">
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <p>12 Months Subscription</p>
+                        <p>Description :</p>
+                        <p>Get Unlimited Access to Tutorials and Courses</p>
+                        <p><h3>Price : 950 DT </h3></p>
+                        <a href="{{ path('showCard3') }}" style="width: 300px" class="btn btn-primary ">Get</a>
+                    </a>
+
+                </div>
+
+                {% endif %}
+
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

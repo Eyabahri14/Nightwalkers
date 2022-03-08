@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="content-page">
+
+        <!-- Start content -->
+        <div class="content">
+            <div class="container">
+                <div class="about-section-box">
+                    <div class="container">
+                        >
+                        <!-- Start slides -->
+                        {% for message in app.flashes('success') %}
+                            <div class="alert alert-success" style="z-index: 1000000">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                        <div id="slides" class="cover-slides">
+                            <ul class="slides-container">
+                                {% for p in products %}
+                                    <li class="text-center">
+                                        <img src="{{ app.request.getBaseURL() }}/uploads/brochures/{{ p.picture }}" alt="">
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <h1 class="m-b-20"><strong>{{ p.name }}</strong></h1>
+                                                    <p class="m-b-100" style="padding-top: 170px">{{ p.description }}</p>
+                                                    {% if app.user is not null   %}
+                                                        {% if app.user.roles[0] == "ROLE_USER" or app.user.roles[0] == "ROLE_ADMIN" or app.user.roles[0] == "ROLE_SUPER_ADMIN" %}
+                                                            <div class="" style="background-color: rgba(248,249,250,0.55);">
+                                                                <a class="btn btn-lg btn-circle btn-outline-new-red" href="{{ path('add_to_favoris',{'id': p.id}) }}">
+                                                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                                                </a>
+                                                                {% if app.user.id not in p.voteuserid  %}
+                                                                    <a  class="btn btn-lg btn-circle btn-outline-new-red"  href="{{ path('like',{'id':p.id})}}">
+                                                                        <i class="fa fa-heart-o active" aria-hidden="true" ></i>
+                                                                    </a>
+                                                                {% else %}
+                                                                    <div  class="btn btn-lg btn-circle btn-outline-new-red ">
+                                                                        <i class="fa fa-heart" aria-hidden="true"></i>
+                                                                    </div>
+                                                                {% endif %}
+                                                                <a class="btn btn-lg btn-circle btn-outline-new-red"  href="{{ path('affichage_article',{'id':p.id}) }}">
+                                                                    <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                                                </a>
+                                                                <a class="btn btn-lg btn-circle btn-outline-new-red"  href="{{ path('publier_artcile') }}">
+                                                                    <i class="fa fa-info-circle" aria-hidden="true"></i> publier un article
+                                                                </a>
+
+                                                            </div>
+                                                        {% endif %}
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                {% endfor %}
+                            </ul>
+                            <div class="slides-navigation">
+                                <a href="#" class="next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                <a href="#" class="prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                        <!-- End slides -->
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}

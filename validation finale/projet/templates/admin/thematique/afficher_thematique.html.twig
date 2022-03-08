@@ -1,0 +1,58 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block body %}
+    <div class="content-page">
+        <!-- Start content -->
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <a href="{{ path('addThematique') }}">
+                        <button type="button" class="btn btn-purple btn-rounded w-md waves-effect waves-light m-b-5">AjouterThematique</button>
+
+                    </a>
+
+                </div>
+                <div class="row" style="display: flex;align-items: center;justify-content: center">
+                    <div class="col-lg-6">
+                        <div class="card-box">
+                            <div class="dropdown pull-right">
+
+                            <table class="table">
+                                <thead class="thead-light">
+                                <tr>
+                                    <th>id</th>
+                                    <th>nom</th>
+                                    <th>Modifier</th>
+                                    <th>Supprimer</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                {% for p in thematique %}
+                                    <tr>
+
+                                        <th scope="row">{{ p.nom}}</th>
+                                        <td> <img class="card-img-top img-fluid" src="{{ asset('uploads/thematique_image/' )~p.image  }}" alt="Card image cap" > </td>
+                                        <td><a href="{{ path('modificationThematique',{'id':p.id}) }}"><i class="fa fa-pencil" style="color:#00aff0;font-size:20px"></i> </a></td>
+                                        <td><a href="{{ path('suppressionThematique',{'id':p.id}) }}"><i class="fa fa-trash" style="color:#ff5b5b;font-size:20px"></i> </a> </td>
+
+                                    </tr>
+                                {% endfor %}
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}

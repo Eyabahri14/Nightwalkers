@@ -1,0 +1,63 @@
+<html>
+<body>
+<div class="content-page">
+
+    <!-- Start content -->
+
+    <div class="content">
+        <div class="container-fluid">
+            <!-- Start All Pages -->
+            <div class="all-page-title page-breadcrumb">
+                <div class="container text-center">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1>Commentaire {{ discussion  }} </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End All Pages -->
+
+            <!-- Start blog -->
+            <div class="blog-box">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="heading-title text-center">
+                                <h2>Commentaires</h2>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-12">
+                            <div class="blog-inner-details-page">
+                                <div class="blog-comment-box">
+
+                                    <div class="comment-item">
+
+                                        <div class="comment-item-right">
+
+                                            <div class="pull-right">
+                                                <i class="fa fa-clock-o" aria-hidden="true"></i>Date : <span>{{ commentaire.datecreationcom.format('d/m/Y H:i:s') }}</span>
+                                            </div>
+                                            <div class="des-l">
+                                                <p>{{ commentaire.description }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

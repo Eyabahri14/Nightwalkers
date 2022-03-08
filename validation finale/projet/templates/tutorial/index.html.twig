@@ -1,0 +1,112 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}<title>Browse tutorials</title>{% endblock %}
+
+
+{% block body %}
+    <div class="all-page-title page-breadcrumb">
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1>Tutorials</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End All Pages -->
+
+    <!-- Start Menu -->
+    <div class="menu-box">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="special-menu text-center">
+                        <div class="button-group filter-button-group">
+                            <button class="active" data-filter="*">All</button>
+                            <button data-filter=".starters">Starters</button>
+                            <button data-filter=".main">Main Dished</button>
+                            <button data-filter=".side">Side Dished</button>
+                            <button data-filter=".deserts">Deserts</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row special-list">
+                {% for tutorial in tutorials %}
+
+                    {% if tutorial.category == "Starters" %}
+
+                        <div class="col-lg-4 col-md-6 special-grid starters">
+                        <a href="{{ path('tutorial_show',{'id':tutorial.id}) }}">
+                            <div class="gallery-single fix">
+                                <img src="{{ asset('uploads/'~ tutorial.image ) }}" class="img-fluid" alt="Image">
+                                <div class="why-text">
+                                    <h4>{{ tutorial.titre }} </h4>
+                                    <p>{{ tutorial.description }}</p>
+                                    <h5> {{ tutorial.prix }} DT</h5>
+                                </div>
+                            </div>
+                        </a>
+                        </div>
+
+                    {% endif %}
+
+                    {% if tutorial.category == "Main Dishes" %}
+
+                        <div class="col-lg-4 col-md-6 special-grid main">
+                            <div class="gallery-single fix">
+                                <img src="{{ asset('uploads/'~ tutorial.image ) }}" class="img-fluid" alt="Image">
+                                <div class="why-text">
+                                    <a href="{{ path('tutorial_show',{'id':tutorial.id}) }}"><h4>{{ tutorial.titre }} </h4></a>
+                                    <p>{{ tutorial.description }}</p>
+                                    <h5> {{ tutorial.prix }}DT</h5>
+                                </div>
+                            </div>
+                        </div>
+
+                    {% endif %}
+
+                    {% if tutorial.category == "Side Dished" %}
+
+                        <div class="col-lg-4 col-md-6 special-grid side">
+                            <div class="gallery-single fix">
+                                <img src="{{ asset('uploads/'~ tutorial.image ) }}" class="img-fluid" alt="Image">
+                                <div class="why-text">
+                                    <a href="{{ path('tutorial_show',{'id':tutorial.id}) }}"><h4>{{ tutorial.titre }} </h4></a>
+                                    <p>{{ tutorial.description }}</p>
+                                    <h5> {{ tutorial.prix }}DT</h5>
+                                </div>
+                            </div>
+                        </div>
+
+                    {% endif %}
+
+                    {% if tutorial.category == "Deserts" %}
+
+                        <div class="col-lg-4 col-md-6 special-grid deserts">
+                            <div class="gallery-single fix">
+                                <img src="{{ asset('uploads/'~ tutorial.image ) }}" class="img-fluid" alt="Image">
+                                <div class="why-text">
+                                    <a href="{{ path('tutorial_show',{'id':tutorial.id}) }}"><h4>{{ tutorial.titre }} </h4></a>
+                                    <p>{{ tutorial.description }}</p>
+                                    <h5> {{ tutorial.prix }}DT</h5>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+
+
+                {% endfor %}
+
+
+            </div>
+        </div>
+    </div>
+    <!-- End Menu -->
+
+
+
+{% endblock %}

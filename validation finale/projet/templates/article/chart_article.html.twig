@@ -1,0 +1,52 @@
+{% extends 'admin/base.html.twig' %}
+{% block title %}<title>charts</title>{% endblock %}
+{% block stylesheet %}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.css" rel="stylesheet"/>
+{% endblock %}
+{% block body %}
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div id="piechart" style="width: 900px; height: 500px;"></div>
+        </div>
+        <div class="col-lg-12 col-md-12">
+            <div id="curve_chart" style="width: 900px; height: 500px"></div>
+        </div>
+
+
+    </div>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+            const obj=JSON.parse('{{ vuesperarticle|json_encode()|raw }}');
+            const tab = Object.entries(obj)
+            var data = google.visualization.arrayToDataTable(tab);
+            var options = {
+                title: 'vues par aticle'
+            };
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+            chart.draw(data, options);
+        }
+        google.charts.setOnLoadCallback(drawChart1);
+
+        google.charts.setOnLoadCallback(drawChart1);
+        function drawChart1() {
+            const obj=JSON.parse('{{ likesperarticle|json_encode()|raw }}');
+            const tab = Object.entries(obj)
+            var data = google.visualization.arrayToDataTable(tab);
+            var options = {
+                title: 'likes par article'
+            };
+            var chart = new google.visualization.ColumnChart(document.getElementById('curve_chart'));
+            chart.draw(data, options);
+        }
+        google.charts.load("current", {packages:["corechart"]});
+
+    </script>
+
+
+{% endblock %}
+
+

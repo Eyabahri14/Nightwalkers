@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}<title>Edit Profile</title>{% endblock %}
+
+{% block body %}
+    <div class="contact-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="heading-title text-center">
+                        <h2>Edit Profile</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row">
+                        {{ form_start(editProfileForm) }}
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                {{ form_row(editProfileForm.firstname) }}
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                {{ form_row(editProfileForm.lastname) }}
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="submit-button text-center">
+                                <button class="btn btn-common">Update</button>
+                            </div>
+                        </div>
+                        {{ form_end(editProfileForm) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
